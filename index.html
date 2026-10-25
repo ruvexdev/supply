@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0D1117">
+  <title>Ruvex — small Windows utilities by ruvexdev</title>
+    <meta name="description" content="Ruvex is a shelf of small, focused Windows utilities by ruvexdev. Pull, a yt-dlp downloader, is available now.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/Jersey25-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-r" viewBox="0 0 16 16">
+        <rect x="1" y="1" width="14" height="14" fill="#F16D0B"/>
+        <rect x="4" y="3" width="3" height="10" fill="#0D1117"/>
+        <rect x="7" y="3" width="4" height="2" fill="#0D1117"/>
+        <rect x="11" y="5" width="2" height="3" fill="#0D1117"/>
+        <rect x="7" y="8" width="4" height="2" fill="#0D1117"/>
+        <rect x="10" y="10" width="3" height="3" fill="#0D1117"/>
+      </symbol>
+      <symbol id="icon-shred" viewBox="0 0 16 16">
+        <rect x="4" y="1" width="8" height="6" fill="currentColor"/>
+        <rect x="6" y="2" width="4" height="1" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="3" y="7" width="10" height="2" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="4" y="10" width="2" height="4" fill="currentColor"/>
+        <rect x="7" y="10" width="2" height="4" fill="currentColor"/>
+        <rect x="10" y="10" width="2" height="4" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-clipstack" viewBox="0 0 16 16">
+        <rect x="4" y="2" width="8" height="12" fill="currentColor"/>
+        <rect x="6" y="1" width="4" height="2" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="5" y="5" width="6" height="1" fill="var(--icon-bg, #0D1117)"/>
+        <rect x="5" y="8" width="6" height="1" fill="var(--icon-bg, #0D1117)"/>
+        <rect x="5" y="11" width="4" height="1" fill="var(--icon-bg, #0D1117)"/>
+      </symbol>
+      <symbol id="icon-swatch" viewBox="0 0 16 16">
+        <rect x="9" y="1" width="4" height="4" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="8" y="5" width="4" height="2" fill="currentColor"/>
+        <rect x="6" y="7" width="4" height="2" fill="currentColor"/>
+        <rect x="4" y="9" width="4" height="2" fill="currentColor"/>
+        <rect x="2" y="11" width="4" height="4" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="3" y="12" width="2" height="2" fill="var(--icon-bg, #0D1117)"/>
+      </symbol>
+      <symbol id="icon-shrink" viewBox="0 0 16 16">
+        <rect x="2" y="3" width="12" height="10" fill="currentColor"/>
+        <rect x="3" y="4" width="10" height="8" fill="var(--icon-bg, #0D1117)"/>
+        <rect x="9" y="5" width="2" height="2" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="4" y="8" width="2" height="2" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="6" y="7" width="2" height="3" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="8" y="9" width="2" height="2" fill="currentColor"/>
+        <rect x="4" y="11" width="2" height="1" fill="currentColor"/>
+        <rect x="10" y="11" width="2" height="1" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-hash" viewBox="0 0 16 16">
+        <rect x="3" y="2" width="10" height="8" fill="currentColor"/>
+        <rect x="4" y="10" width="8" height="2" fill="currentColor"/>
+        <rect x="6" y="12" width="4" height="2" fill="currentColor"/>
+        <rect x="5" y="5" width="6" height="1" fill="var(--icon-bg, #0D1117)"/>
+        <rect x="4" y="7" width="8" height="1" fill="var(--icon-bg, #0D1117)"/>
+        <rect x="6" y="4" width="1" height="6" fill="var(--icon-bg, #0D1117)"/>
+        <rect x="9" y="4" width="1" height="6" fill="var(--icon-bg, #0D1117)"/>
+      </symbol>
+      <symbol id="icon-boot" viewBox="0 0 16 16">
+        <rect x="7" y="1" width="2" height="5" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="4" y="4" width="8" height="2" fill="currentColor"/>
+        <rect x="3" y="6" width="2" height="4" fill="currentColor"/>
+        <rect x="11" y="6" width="2" height="4" fill="currentColor"/>
+        <rect x="4" y="10" width="8" height="2" fill="currentColor"/>
+        <rect x="6" y="12" width="4" height="1" fill="var(--icon-accent, #F16D0B)"/>
+      </symbol>
+      <symbol id="icon-ping" viewBox="0 0 16 16">
+        <rect x="1" y="7" width="2" height="2" fill="currentColor"/>
+        <rect x="3" y="5" width="2" height="6" fill="currentColor"/>
+        <rect x="5" y="2" width="2" height="12" fill="var(--icon-accent, #F16D0B)"/>
+        <rect x="7" y="6" width="2" height="4" fill="currentColor"/>
+        <rect x="9" y="8" width="2" height="2" fill="currentColor"/>
+        <rect x="11" y="6" width="2" height="4" fill="currentColor"/>
+        <rect x="13" y="7" width="2" height="2" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-arrow-down" viewBox="0 0 16 16">
+        <rect x="7" y="2" width="2" height="8" fill="currentColor"/>
+        <rect x="5" y="8" width="6" height="2" fill="currentColor"/>
+        <rect x="6" y="10" width="4" height="2" fill="currentColor"/>
+        <rect x="7" y="12" width="2" height="1" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 16 16">
+        <rect x="2" y="7" width="8" height="2" fill="currentColor"/>
+        <rect x="8" y="5" width="2" height="6" fill="currentColor"/>
+        <rect x="10" y="6" width="2" height="4" fill="currentColor"/>
+        <rect x="12" y="7" width="1" height="2" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-bookmark" viewBox="0 0 16 16">
+        <path d="M4 2h8v12l-4-3.5L4 14V2z" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-shelf-view" viewBox="0 0 16 16">
+        <rect x="2" y="3" width="4" height="7" fill="currentColor"/>
+        <rect x="7" y="2" width="3" height="8" fill="currentColor"/>
+        <rect x="11" y="4" width="3" height="6" fill="currentColor"/>
+        <rect x="1" y="11" width="14" height="2" fill="currentColor"/>
+      </symbol>
+      <symbol id="icon-list-view" viewBox="0 0 16 16">
+        <rect x="2" y="3" width="2" height="2" fill="currentColor"/>
+        <rect x="6" y="3" width="8" height="2" fill="currentColor"/>
+        <rect x="2" y="7" width="2" height="2" fill="currentColor"/>
+        <rect x="6" y="7" width="8" height="2" fill="currentColor"/>
+        <rect x="2" y="11" width="2" height="2" fill="currentColor"/>
+        <rect x="6" y="11" width="8" height="2" fill="currentColor"/>
+      </symbol>
+      <symbol id="barcode" viewBox="0 0 84 24">
+        <rect x="0" y="0" width="2" height="24" fill="currentColor"/>
+        <rect x="3" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="6" y="0" width="3" height="24" fill="currentColor"/>
+        <rect x="11" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="14" y="0" width="2" height="24" fill="currentColor"/>
+        <rect x="18" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="21" y="0" width="4" height="24" fill="currentColor"/>
+        <rect x="27" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="30" y="0" width="2" height="24" fill="currentColor"/>
+        <rect x="34" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="37" y="0" width="3" height="24" fill="currentColor"/>
+        <rect x="42" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="45" y="0" width="2" height="24" fill="currentColor"/>
+        <rect x="49" y="0" width="4" height="24" fill="currentColor"/>
+        <rect x="55" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="58" y="0" width="2" height="24" fill="currentColor"/>
+        <rect x="62" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="65" y="0" width="3" height="24" fill="currentColor"/>
+        <rect x="70" y="0" width="1" height="24" fill="currentColor"/>
+        <rect x="73" y="0" width="2" height="24" fill="currentColor"/>
+        <rect x="77" y="0" width="4" height="24" fill="currentColor"/>
+        <rect x="82" y="0" width="2" height="24" fill="currentColor"/>
+      </symbol>
+          <symbol id="icon-pull" viewBox="0 0 16 16">
+        <rect x="7" y="1" width="2" height="7" fill="currentColor"/>
+        <rect x="4" y="6" width="8" height="2" fill="currentColor"/>
+        <rect x="5" y="8" width="6" height="2" fill="currentColor"/>
+        <rect x="6" y="10" width="4" height="2" fill="currentColor"/>
+        <rect x="2" y="13" width="12" height="2" fill="var(--icon-accent, #F16D0B)"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Ruvex Software Supply, back to top">
+        <span class="brand-mark"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-r"/></svg></span>
+        <span class="brand-word">RUVEX</span>
+        <span class="brand-sub">SOFTWARE SUPPLY</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#shelf">Shelf</a>
+        <a href="#about">About</a>
+      </nav>
+      <span class="demo-chip"><span class="chip-dot" aria-hidden="true"></span><span class="chip-long">VOL. 01</span><span class="chip-short">VOL. 01</span></span>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-light" aria-hidden="true"></div>
+      <div class="hero-dust" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="hero-inner">
+        <div class="hero-stage">
+          <div class="hanging-sign">
+            <span class="sign-chain sign-chain-a" aria-hidden="true"></span>
+            <span class="sign-chain sign-chain-b" aria-hidden="true"></span>
+            <div class="sign-board">
+              <span class="sign-word">RUVEX</span>
+              <span class="sign-sub">SOFTWARE SUPPLY</span>
+              <span class="sign-meta">VOL. 01 · WINDOWS UTILITIES</span>
+            </div>
+          </div>
+
+          <div class="hero-box-shadow" aria-hidden="true"></div>
+
+          <div class="hero-box-wrap">
+            <div class="hero-box" aria-hidden="true">
+              <span class="hero-box-side"></span>
+              <span class="hero-box-top"></span>
+              <div class="hero-box-front">
+                <div class="hero-band"><span>RUVEX</span><span>VOL. 01</span></div>
+                <div class="hero-cover">
+                  <span class="hero-cat">WINDOWS UTILITIES</span>
+                  <span class="hero-title">UTILITIES</span>
+                  <span class="hero-sub">VOLUME ONE</span>
+                  <div class="hero-icon-grid">
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-pull"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-shred"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-clipstack"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-swatch"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-shrink"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-hash"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-boot"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-ping"/></svg></span>
+                  </div>
+                  <span class="hero-copy">SMALL TOOLS.<br>ONE JOB EACH.</span>
+                </div>
+                <div class="hero-foot"><span>SOFTWARE SUPPLY</span><span>VOL. 01</span></div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-shelf" aria-hidden="true">
+            <div class="shelf-label">RUVEX SOFTWARE SUPPLY <span>·</span> VOL. 01 <span>·</span> SOFTWARE SUPPLY <span>·</span> RUVEX SOFTWARE SUPPLY <span>·</span> VOL. 01 <span>·</span> SOFTWARE SUPPLY <span>·</span> RUVEX SOFTWARE SUPPLY <span>·</span> VOL. 01 <span>·</span> SOFTWARE SUPPLY</div>
+          </div>
+        </div>
+
+        <div class="shelf-talker">
+          <span class="talker-clip" aria-hidden="true"></span>
+          <h1 id="hero-title">Small tools.<br>One job each.</h1>
+          <p class="hero-lede">A shelf of focused Windows utilities from ruvexdev. Pull is on the shelf now; the rest are on their way.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#shelf">Browse the shelf <svg class="btn-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-arrow-down"/></svg></a>
+            <a class="text-link" href="#about">About Ruvex <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="talker-meta" aria-label="Catalog summary">
+            <span><strong>8</strong> TOOLS</span>
+            <span><strong>1</strong> AVAILABLE</span>
+            <span><strong>1</strong> .EXE FILE</span>
+          </div>
+          <div class="talker-foot">
+            <span class="talker-label">SHELF TALKER / VOL. 01</span>
+            <svg class="barcode" viewBox="0 0 84 24" aria-hidden="true"><use href="#barcode"/></svg>
+            <span class="talker-sku">RXV-VOL-01</span>
+          </div>
+        </div>
+
+        <p class="hero-fineprint"><span class="fine-dot" aria-hidden="true"></span> NO ACCOUNTS. NO EMAIL.</p>
+      </div>
+    </section>
+
+    <section class="catalog" id="shelf" aria-labelledby="shelf-title">
+      <div class="catalog-head">
+        <div>
+          <h2 id="shelf-title">The shelf</h2>
+          <p class="section-lede">Pull is on the shelf. The rest are on their way.</p>
+        </div>
+        <div class="view-toggle" hidden role="group" aria-label="Catalog view">
+          <button class="view-btn is-active" type="button" data-view="shelf" aria-pressed="true">
+            <svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-shelf-view"/></svg> Shelf
+          </button>
+          <button class="view-btn" type="button" data-view="list" aria-pressed="false">
+            <svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-list-view"/></svg> List
+          </button>
+        </div>
+      </div>
+
+      <div class="filter-rail" hidden>
+        <span class="rail-label" aria-hidden="true">AISLE</span>
+        <div class="filters" role="group" aria-label="Filter tools by aisle">
+          <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">All <span>8</span></button>
+          <button class="filter" type="button" data-filter="system" aria-pressed="false">System <span>1</span></button>
+          <button class="filter" type="button" data-filter="security" aria-pressed="false">Security <span>2</span></button>
+          <button class="filter" type="button" data-filter="productivity" aria-pressed="false">Productivity <span>1</span></button>
+          <button class="filter" type="button" data-filter="media" aria-pressed="false">Media <span>2</span></button>
+          <button class="filter" type="button" data-filter="network" aria-pressed="false">Network <span>1</span></button>
+        </div>
+        <p class="filter-count" id="filter-count" aria-live="polite">Showing 8 of 8</p>
+      </div>
+
+      <div class="catalog-layout">
+        <div class="catalog-main">
+          <div class="shelf-grid" id="shelf-grid">
+            <article class="tool cover-orange" data-tool="pull" data-category="media">
+              <span class="tool-badges" aria-hidden="true">
+                <span class="badge badge-counter">ON COUNTER</span>
+                <span class="badge badge-saved"><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-bookmark"/></svg> SAVED</span>
+              </span>
+              <button class="tool-btn" type="button" data-tool="pull" aria-label="Open box 001: Pull, yt-dlp downloader, available" aria-pressed="false" aria-controls="counter">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 001</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">MEDIA</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-pull"/></svg></span>
+                      <span class="tool-name">Pull</span>
+                      <span class="tool-job">yt-dlp downloader</span>
+                    </span>
+                    <span class="tool-foot"><span>AVAILABLE</span><span>OPEN BOX →</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true"></span>
+            </article>
+            <article class="tool cover-cream is-locked" data-tool="locked-shred" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 002: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 002</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">***</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-shred"/></svg></span>
+                      <span class="tool-name">***</span>
+                      <span class="tool-job">***</span>
+                    </span>
+                    <span class="tool-foot"><span>***</span><span>***</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true" data-label="002 · ***"></span>
+            </article>
+            <article class="tool cover-ink is-locked" data-tool="locked-clipstack" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 003: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 003</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">***</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-clipstack"/></svg></span>
+                      <span class="tool-name">***</span>
+                      <span class="tool-job">***</span>
+                    </span>
+                    <span class="tool-foot"><span>***</span><span>***</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true" data-label="003 · ***"></span>
+            </article>
+            <article class="tool cover-cream is-locked" data-tool="locked-swatch" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 004: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 004</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">***</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-swatch"/></svg></span>
+                      <span class="tool-name">***</span>
+                      <span class="tool-job">***</span>
+                    </span>
+                    <span class="tool-foot"><span>***</span><span>***</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true" data-label="004 · ***"></span>
+            </article>
+            <article class="tool cover-cream is-locked" data-tool="locked-shrink" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 005: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 005</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">***</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-shrink"/></svg></span>
+                      <span class="tool-name">***</span>
+                      <span class="tool-job">***</span>
+                    </span>
+                    <span class="tool-foot"><span>***</span><span>***</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true" data-label="005 · ***"></span>
+            </article>
+            <article class="tool cover-ink is-locked" data-tool="locked-hash" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 006: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 006</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">***</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-hash"/></svg></span>
+                      <span class="tool-name">***</span>
+                      <span class="tool-job">***</span>
+                    </span>
+                    <span class="tool-foot"><span>***</span><span>***</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true" data-label="006 · ***"></span>
+            </article>
+            <article class="tool cover-cream is-locked" data-tool="locked-boot" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 007: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 007</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">***</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-boot"/></svg></span>
+                      <span class="tool-name">***</span>
+                      <span class="tool-job">***</span>
+                    </span>
+                    <span class="tool-foot"><span>***</span><span>***</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true" data-label="007 · ***"></span>
+            </article>
+            <article class="tool cover-orange is-locked" data-tool="locked-ping" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 008: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 008</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">***</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-ping"/></svg></span>
+                      <span class="tool-name">***</span>
+                      <span class="tool-job">***</span>
+                    </span>
+                    <span class="tool-foot"><span>***</span><span>***</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true" data-label="008 · ***"></span>
+            </article>
+          </div>
+
+          <p class="shelf-hint" id="shelf-hint"><span class="key" aria-hidden="true">←</span><span class="key" aria-hidden="true">→</span> MOVE ALONG THE SHELF <span class="hint-sep">/</span> <span class="key">ENTER</span> OPEN</p>
+          <p class="empty-state" id="empty-state" hidden>No tools in this aisle yet.</p>
+
+          <ul class="tool-list" id="tool-list" hidden>
+            <li class="list-item" data-tool="pull" data-category="media">
+              <button class="list-btn" type="button" data-tool="pull" aria-label="Open Pull: yt-dlp downloader, Media, available" aria-pressed="false" aria-controls="counter">
+                <span class="list-plate">001</span>
+                <span class="list-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-pull"/></svg></span>
+                <span class="list-main"><span class="list-name">Pull</span><span class="list-job">yt-dlp downloader</span></span>
+                <span class="list-cat">Media</span>
+                <span class="list-status">AVAILABLE</span>
+                <span class="list-open">Open <svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-arrow-right"/></svg></span>
+              </button>
+            </li>
+          </ul>
+
+        </div>
+
+        <aside class="counter" id="counter" aria-labelledby="counter-title" aria-describedby="counter-readme">
+          <div class="counter-inner">
+            <div class="counter-head">
+              <span>ON THE COUNTER</span>
+              <span id="counter-plate">NO. 001</span>
+            </div>
+            <div class="counter-title-row">
+              <span class="counter-icon" id="counter-icon" aria-hidden="true"><svg class="pixel-icon" viewBox="0 0 16 16"><use id="counter-icon-use" href="#icon-pull"/></svg></span>
+              <div>
+                <h3 id="counter-title">Pull</h3>
+                <p class="counter-job" id="counter-job">YT-DLP DOWNLOADER</p>
+              </div>
+            </div>
+            <p class="counter-readme" id="counter-readme">Paste a link, pick video or audio, choose a folder. Pull is a plain front-end for yt-dlp: quality, format and extras in one work order, with live progress while it runs.</p>
+            <ul class="counter-bullets" id="counter-bullets">
+              <li>Video or audio, with quality and format choices</li>
+              <li>Runs on your PC, no account, no upload</li>
+            </ul>
+            <div class="counter-specs">
+              <div><span>STATUS</span><strong>AVAILABLE</strong></div>
+              <div><span>PLATFORM</span><strong>WINDOWS</strong></div>
+              <div><span>DOWNLOAD</span><strong>.EXE · 36 MB</strong></div>
+            </div>
+            <div class="counter-actions">
+              <button class="btn btn-save" id="save-btn" type="button" aria-pressed="false">
+                <svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-bookmark"/></svg>
+                <span id="save-label">Save for later</span>
+              </button>
+              <a class="btn btn-download" id="download-btn" href="downloads/Pull.exe" download="Pull.exe">
+                Download .exe <span class="btn-note">READY</span>
+              </a>
+            </div>
+            <p class="counter-note">Windows 10 or later. Windows may show a SmartScreen notice for a new unsigned app.</p>
+            <a class="back-to-shelf" href="#shelf">← Back to the shelf</a>
+          </div>
+          <p class="sr-only" id="counter-announcer" aria-live="polite"></p>
+        </aside>
+
+      </div>
+
+      <noscript><p class="noscript">JavaScript is off. The shelf and the back cover are readable, but opening boxes and saving tools are disabled.</p></noscript>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="about-inner">
+        <div class="about-copy">
+          <h2 id="about-title">Ruvex</h2>
+          <p class="about-lede">Ruvex is a shelf of small Windows tools by ruvexdev.</p>
+          <p>Why a shelf? Because a utility should feel like an object you can pick up, read the back of, and decide to keep — not another row in a software directory.</p>
+          <p>Tools are tested, listed with a direct download, and added to the shelf one at a time. Pull is the first.</p>
+          <div class="about-signature">
+            <span class="sig-mark"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-r"/></svg></span>
+            <span class="sig-copy"><span class="sig-name">RUVEXDEV</span><span class="sig-note">independent developer</span></span>
+          </div>
+        </div>
+
+        <div class="receipt-wrap">
+          <div class="receipt" role="note" aria-label="Shelf receipt">
+            <p class="receipt-top">RUVEX SOFTWARE SUPPLY</p>
+            <p class="receipt-sub">VOL. 01 / SOFTWARE SUPPLY</p>
+            <div class="receipt-rule" aria-hidden="true"></div>
+            <dl class="receipt-lines">
+              <div><dt>Tools on the shelf</dt><dd>8</dd></div>
+              <div><dt>Available now</dt><dd>1</dd></div>
+              <div><dt>.exe files</dt><dd>1</dd></div>
+              <div><dt>Saved in this browser</dt><dd><span id="receipt-saved">0</span></dd></div>
+            </dl>
+            <div class="receipt-rule" aria-hidden="true"></div>
+            <div class="receipt-total"><span>TOTAL</span><span>1 READY</span></div>
+            <p class="receipt-thanks">THANK YOU FOR LOOKING.</p>
+            <div class="receipt-bottom">
+              <svg class="barcode" viewBox="0 0 84 24" aria-hidden="true"><use href="#barcode"/></svg>
+              <span>RXV-VOL-01</span>
+            </div>
+          </div>
+          <p class="receipt-note">No accounts. No email.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="footer-brand" href="#top">
+        <span class="footer-r"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-r"/></svg></span>
+        <span>RUVEX SOFTWARE SUPPLY</span>
+      </a>
+      <p class="footer-note">Small Windows tools by ruvexdev.</p>
+      <div class="footer-links">
+        <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        <span>© 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
