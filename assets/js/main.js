@@ -1,20 +1,35 @@
-/* Ruvex Software Supply — demo catalog behaviour.
+/* Ruvex Software Supply — catalog behaviour.
    No network, no accounts. Saved tools live in this browser only. */
 (function () {
   'use strict';
 
   var TOOLS = {
     pull: {
-      plate: '009',
+      plate: '001',
       name: 'Pull',
       job: 'yt-dlp downloader',
       category: 'media',
       categoryLabel: 'Media',
       icon: 'pull',
+      file: 'downloads/Pull.exe',
       readme: 'Paste a link, pick video or audio, choose a folder. Pull is a plain front-end for yt-dlp: quality, format and extras in one work order, with live progress while it runs.',
       bullets: [
         'Video or audio, with quality and format choices',
         'Runs on your PC, no account, no upload'
+      ]
+    },
+    stash: {
+      plate: '002',
+      name: 'Stash',
+      job: 'folder backups',
+      category: 'files',
+      categoryLabel: 'Files',
+      icon: 'stash',
+      file: 'downloads/Stash.exe',
+      readme: 'Pick the folders you care about and Stash packs them into one zip. Inside, your files stay as plain folders, nothing proprietary. The zip carries its own restore script, and Stash can restore straight from it, back to where everything came from.',
+      bullets: [
+        'One zip, normal folders inside, easy to open by hand',
+        'Restore to the original locations, or anywhere else'
       ]
     }
   };
@@ -39,6 +54,12 @@
   var counterBullets = document.getElementById('counter-bullets');
   var counterIconUse = document.getElementById('counter-icon-use');
   var counterAnnouncer = document.getElementById('counter-announcer');
+  var downloadBtn = document.getElementById('download-btn');
+  var downloadNote = document.getElementById('download-note');
+  var specStatus = document.getElementById('spec-status');
+  var specDownload = document.getElementById('spec-download');
+  var counterNote = document.getElementById('counter-note');
+  var fileInfo = {};
   var saveBtn = document.getElementById('save-btn');
   var saveLabel = document.getElementById('save-label');
   var receiptSaved = document.getElementById('receipt-saved');
@@ -92,7 +113,7 @@
 
   function getVisibleShelfTools() {
     return Array.prototype.slice.call(shelfGrid.querySelectorAll('.tool')).filter(function (article) {
-      return !article.hidden;
+      return !article.hidden && !article.classList.contains('is-locked');
     });
   }
 
@@ -144,6 +165,75 @@
     receiptSaved.textContent = String(saved.size);
   }
 
+  /* Download availability: a HEAD request tells us if the .exe is really on the server. */
+  function probeFile(path, done) {
+    if (fileInfo[path]) {
+      done(fileInfo[path]);
+      return;
+    }
+    if (!window.fetch || window.location.protocol === 'file:') {
+      fileInfo[path] = { ok: true, size: 0 };
+      done(fileInfo[path]);
+      return;
+    }
+    window.fetch(path, { method: 'HEAD', cache: 'no-store' }).then(function (res) {
+      var type = res.headers.get('content-type') || '';
+      var size = parseInt(res.headers.get('content-length') || '0', 10) || 0;
+      fileInfo[path] = { ok: res.ok && type.indexOf('text/html') === -1, size: size };
+      done(fileInfo[path]);
+    }).catch(function () {
+      fileInfo[path] = { ok: true, size: 0 };
+      done(fileInfo[path]);
+    });
+  }
+
+  function renderDownload(toolId, info) {
+    var tool = TOOLS[toolId];
+    if (!tool || toolId !== currentTool) {
+      return;
+    }
+    if (info && info.ok) {
+      downloadBtn.classList.remove('is-off');
+      downloadBtn.setAttribute('href', tool.file);
+      downloadBtn.setAttribute('download', tool.file.split('/').pop());
+      downloadBtn.removeAttribute('aria-disabled');
+      downloadBtn.removeAttribute('tabindex');
+      downloadNote.textContent = 'READY';
+      specStatus.textContent = 'AVAILABLE';
+      specDownload.textContent = info.size ? '.EXE \u00b7 ' + Math.max(1, Math.round(info.size / 1048576)) + ' MB' : '.EXE';
+      counterNote.textContent = 'Windows 10 or later. Windows may show a SmartScreen notice for a new unsigned app.';
+    } else {
+      downloadBtn.classList.add('is-off');
+      downloadBtn.removeAttribute('href');
+      downloadBtn.removeAttribute('download');
+      downloadBtn.setAttribute('aria-disabled', 'true');
+      downloadBtn.setAttribute('tabindex', '-1');
+      downloadNote.textContent = info ? 'NOT YET' : '...';
+      specStatus.textContent = info ? 'COMING SOON' : 'CHECKING';
+      specDownload.textContent = info ? 'NOT YET AVAILABLE' : '...';
+      counterNote.textContent = info ? 'The download is not up yet. Check back soon.' : '';
+    }
+  }
+
+  function updateCounts() {
+    var ids = Object.keys(TOOLS);
+    var found = 0;
+    var pending = ids.length;
+    ids.forEach(function (id) {
+      probeFile(TOOLS[id].file, function (info) {
+        if (info.ok) {
+          found += 1;
+        }
+        pending -= 1;
+        if (pending === 0) {
+          Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function (el) {
+            el.textContent = String(found);
+          });
+        }
+      });
+    });
+  }
+
   function updateCounter(toolId, animate) {
     var tool = TOOLS[toolId];
     if (!tool) {
@@ -155,6 +245,9 @@
     counterJob.textContent = tool.job.toUpperCase();
     counterReadme.textContent = tool.readme;
     counterIconUse.setAttribute('href', '#icon-' + tool.icon);
+
+    renderDownload(toolId, fileInfo[tool.file] || null);
+    probeFile(tool.file, function (info) { renderDownload(toolId, info); });
 
     counterBullets.replaceChildren();
     tool.bullets.forEach(function (text) {
@@ -391,7 +484,7 @@
 
   shelfGrid.addEventListener('click', function (event) {
     var article = event.target.closest('.tool');
-    if (!article) {
+    if (!article || article.classList.contains('is-locked')) {
       return;
     }
     selectTool(article.dataset.tool, {
@@ -467,4 +560,5 @@
   setView(readStorage(VIEW_KEY), false);
   applyFilter('all');
   selectTool('pull', { animate: false, announce: false });
+  updateCounts();
 })();

@@ -74,15 +74,6 @@
         <rect x="4" y="10" width="8" height="2" fill="currentColor"/>
         <rect x="6" y="12" width="4" height="1" fill="var(--icon-accent, #F16D0B)"/>
       </symbol>
-      <symbol id="icon-ping" viewBox="0 0 16 16">
-        <rect x="1" y="7" width="2" height="2" fill="currentColor"/>
-        <rect x="3" y="5" width="2" height="6" fill="currentColor"/>
-        <rect x="5" y="2" width="2" height="12" fill="var(--icon-accent, #F16D0B)"/>
-        <rect x="7" y="6" width="2" height="4" fill="currentColor"/>
-        <rect x="9" y="8" width="2" height="2" fill="currentColor"/>
-        <rect x="11" y="6" width="2" height="4" fill="currentColor"/>
-        <rect x="13" y="7" width="2" height="2" fill="currentColor"/>
-      </symbol>
       <symbol id="icon-arrow-down" viewBox="0 0 16 16">
         <rect x="7" y="2" width="2" height="8" fill="currentColor"/>
         <rect x="5" y="8" width="6" height="2" fill="currentColor"/>
@@ -136,7 +127,16 @@
         <rect x="77" y="0" width="4" height="24" fill="currentColor"/>
         <rect x="82" y="0" width="2" height="24" fill="currentColor"/>
       </symbol>
-          <symbol id="icon-pull" viewBox="0 0 16 16">
+          <symbol id="icon-stash" viewBox="0 0 16 16">
+        <rect x="2" y="3" width="5" height="2" fill="currentColor"/>
+        <rect x="2" y="5" width="12" height="9" fill="currentColor"/>
+        <rect x="7" y="6" width="2" height="3" fill="#0D1117"/>
+        <rect x="5" y="9" width="6" height="1" fill="#0D1117"/>
+        <rect x="6" y="10" width="4" height="1" fill="#0D1117"/>
+        <rect x="7" y="11" width="2" height="1" fill="#0D1117"/>
+        <rect x="2" y="15" width="12" height="1" fill="var(--icon-accent, #F16D0B)"/>
+      </symbol>
+      <symbol id="icon-pull" viewBox="0 0 16 16">
         <rect x="7" y="1" width="2" height="7" fill="currentColor"/>
         <rect x="4" y="6" width="8" height="2" fill="currentColor"/>
         <rect x="5" y="8" width="6" height="2" fill="currentColor"/>
@@ -194,13 +194,13 @@
                   <span class="hero-sub">VOLUME ONE</span>
                   <div class="hero-icon-grid">
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-pull"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-stash"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-shred"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-clipstack"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-swatch"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-shrink"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-hash"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-boot"/></svg></span>
-                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-ping"/></svg></span>
                   </div>
                   <span class="hero-copy">SMALL TOOLS.<br>ONE JOB EACH.</span>
                 </div>
@@ -218,15 +218,15 @@
         <div class="shelf-talker">
           <span class="talker-clip" aria-hidden="true"></span>
           <h1 id="hero-title">Small tools.<br>One job each.</h1>
-          <p class="hero-lede">A shelf of focused Windows utilities from ruvexdev. Pull is on the shelf now; the rest are on their way.</p>
+          <p class="hero-lede">A shelf of focused Windows utilities from ruvexdev. Pull and Stash are on the shelf now; the rest are on their way.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#shelf">Browse the shelf <svg class="btn-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-arrow-down"/></svg></a>
             <a class="text-link" href="#about">About Ruvex <span aria-hidden="true">→</span></a>
           </div>
           <div class="talker-meta" aria-label="Catalog summary">
             <span><strong>8</strong> TOOLS</span>
-            <span><strong>1</strong> AVAILABLE</span>
-            <span><strong>1</strong> .EXE FILE</span>
+            <span><strong data-count="available">2</strong> AVAILABLE</span>
+            <span><strong data-count="exe">2</strong> .EXE FILES</span>
           </div>
           <div class="talker-foot">
             <span class="talker-label">SHELF TALKER / VOL. 01</span>
@@ -243,7 +243,7 @@
       <div class="catalog-head">
         <div>
           <h2 id="shelf-title">The shelf</h2>
-          <p class="section-lede">Pull is on the shelf. The rest are on their way.</p>
+          <p class="section-lede">Pull and Stash are on the shelf. The rest are on their way.</p>
         </div>
         <div class="view-toggle" hidden role="group" aria-label="Catalog view">
           <button class="view-btn is-active" type="button" data-view="shelf" aria-pressed="true">
@@ -294,13 +294,36 @@
               </button>
               <span class="tool-shelf" aria-hidden="true"></span>
             </article>
-            <article class="tool cover-cream is-locked" data-tool="locked-shred" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 002: not available yet" aria-disabled="true">
+            <article class="tool cover-ink" data-tool="stash" data-category="files">
+              <span class="tool-badges" aria-hidden="true">
+                <span class="badge badge-counter">ON COUNTER</span>
+                <span class="badge badge-saved"><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-bookmark"/></svg> SAVED</span>
+              </span>
+              <button class="tool-btn" type="button" data-tool="stash" aria-label="Open box 002: Stash, folder backups, available" aria-pressed="false" aria-controls="counter">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
                     <span class="tool-band"><span>RUVEX</span><span>NO. 002</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">FILES</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-stash"/></svg></span>
+                      <span class="tool-name">Stash</span>
+                      <span class="tool-job">folder backups</span>
+                    </span>
+                    <span class="tool-foot"><span>AVAILABLE</span><span>OPEN BOX →</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true"></span>
+            </article>
+            <article class="tool cover-cream is-locked" data-tool="locked-shred" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 003: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 003</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-shred"/></svg></span>
@@ -311,15 +334,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="002 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="003 · ***"></span>
             </article>
             <article class="tool cover-ink is-locked" data-tool="locked-clipstack" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 003: not available yet" aria-disabled="true">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 004: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 003</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 004</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-clipstack"/></svg></span>
@@ -330,15 +353,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="003 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="004 · ***"></span>
             </article>
             <article class="tool cover-cream is-locked" data-tool="locked-swatch" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 004: not available yet" aria-disabled="true">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 005: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 004</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 005</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-swatch"/></svg></span>
@@ -349,15 +372,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="004 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="005 · ***"></span>
             </article>
             <article class="tool cover-cream is-locked" data-tool="locked-shrink" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 005: not available yet" aria-disabled="true">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 006: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 005</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 006</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-shrink"/></svg></span>
@@ -368,15 +391,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="005 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="006 · ***"></span>
             </article>
             <article class="tool cover-ink is-locked" data-tool="locked-hash" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 006: not available yet" aria-disabled="true">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 007: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 006</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 007</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-hash"/></svg></span>
@@ -387,28 +410,9 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="006 · ***"></span>
-            </article>
-            <article class="tool cover-cream is-locked" data-tool="locked-boot" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 007: not available yet" aria-disabled="true">
-                <span class="tool-box">
-                  <span class="tool-box-side" aria-hidden="true"></span>
-                  <span class="tool-box-top" aria-hidden="true"></span>
-                  <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 007</span></span>
-                    <span class="tool-art">
-                      <span class="tool-cat">***</span>
-                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-boot"/></svg></span>
-                      <span class="tool-name">***</span>
-                      <span class="tool-job">***</span>
-                    </span>
-                    <span class="tool-foot"><span>***</span><span>***</span></span>
-                  </span>
-                </span>
-              </button>
               <span class="tool-shelf" aria-hidden="true" data-label="007 · ***"></span>
             </article>
-            <article class="tool cover-orange is-locked" data-tool="locked-ping" data-category="locked">
+            <article class="tool cover-cream is-locked" data-tool="locked-boot" data-category="locked">
               <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 008: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
@@ -417,7 +421,7 @@
                     <span class="tool-band"><span>RUVEX</span><span>NO. 008</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
-                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-ping"/></svg></span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-boot"/></svg></span>
                       <span class="tool-name">***</span>
                       <span class="tool-job">***</span>
                     </span>
@@ -439,6 +443,16 @@
                 <span class="list-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-pull"/></svg></span>
                 <span class="list-main"><span class="list-name">Pull</span><span class="list-job">yt-dlp downloader</span></span>
                 <span class="list-cat">Media</span>
+                <span class="list-status">AVAILABLE</span>
+                <span class="list-open">Open <svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-arrow-right"/></svg></span>
+              </button>
+            </li>
+            <li class="list-item" data-tool="stash" data-category="files">
+              <button class="list-btn" type="button" data-tool="stash" aria-label="Open Stash: folder backups, Files, available" aria-pressed="false" aria-controls="counter">
+                <span class="list-plate">002</span>
+                <span class="list-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-stash"/></svg></span>
+                <span class="list-main"><span class="list-name">Stash</span><span class="list-job">folder backups</span></span>
+                <span class="list-cat">Files</span>
                 <span class="list-status">AVAILABLE</span>
                 <span class="list-open">Open <svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-arrow-right"/></svg></span>
               </button>
@@ -466,9 +480,9 @@
               <li>Runs on your PC, no account, no upload</li>
             </ul>
             <div class="counter-specs">
-              <div><span>STATUS</span><strong>AVAILABLE</strong></div>
+              <div><span>STATUS</span><strong id="spec-status">AVAILABLE</strong></div>
               <div><span>PLATFORM</span><strong>WINDOWS</strong></div>
-              <div><span>DOWNLOAD</span><strong>.EXE · 36 MB</strong></div>
+              <div><span>DOWNLOAD</span><strong id="spec-download">.EXE</strong></div>
             </div>
             <div class="counter-actions">
               <button class="btn btn-save" id="save-btn" type="button" aria-pressed="false">
@@ -476,10 +490,10 @@
                 <span id="save-label">Save for later</span>
               </button>
               <a class="btn btn-download" id="download-btn" href="downloads/Pull.exe" download="Pull.exe">
-                Download .exe <span class="btn-note">READY</span>
+                Download .exe <span class="btn-note" id="download-note">READY</span>
               </a>
             </div>
-            <p class="counter-note">Windows 10 or later. Windows may show a SmartScreen notice for a new unsigned app.</p>
+            <p class="counter-note" id="counter-note">Windows 10 or later. Windows may show a SmartScreen notice for a new unsigned app.</p>
             <a class="back-to-shelf" href="#shelf">← Back to the shelf</a>
           </div>
           <p class="sr-only" id="counter-announcer" aria-live="polite"></p>
@@ -496,7 +510,7 @@
           <h2 id="about-title">Ruvex</h2>
           <p class="about-lede">Ruvex is a shelf of small Windows tools by ruvexdev.</p>
           <p>Why a shelf? Because a utility should feel like an object you can pick up, read the back of, and decide to keep — not another row in a software directory.</p>
-          <p>Tools are tested, listed with a direct download, and added to the shelf one at a time. Pull is the first.</p>
+          <p>Tools are tested, listed with a direct download, and added to the shelf one at a time. Pull and Stash are the first.</p>
           <div class="about-signature">
             <span class="sig-mark"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-r"/></svg></span>
             <span class="sig-copy"><span class="sig-name">RUVEXDEV</span><span class="sig-note">independent developer</span></span>
@@ -510,12 +524,12 @@
             <div class="receipt-rule" aria-hidden="true"></div>
             <dl class="receipt-lines">
               <div><dt>Tools on the shelf</dt><dd>8</dd></div>
-              <div><dt>Available now</dt><dd>1</dd></div>
-              <div><dt>.exe files</dt><dd>1</dd></div>
+              <div><dt>Available now</dt><dd data-count="available">2</dd></div>
+              <div><dt>.exe files</dt><dd data-count="exe">2</dd></div>
               <div><dt>Saved in this browser</dt><dd><span id="receipt-saved">0</span></dd></div>
             </dl>
             <div class="receipt-rule" aria-hidden="true"></div>
-            <div class="receipt-total"><span>TOTAL</span><span>1 READY</span></div>
+            <div class="receipt-total"><span>TOTAL</span><span><span data-count="available">2</span> READY</span></div>
             <p class="receipt-thanks">THANK YOU FOR LOOKING.</p>
             <div class="receipt-bottom">
               <svg class="barcode" viewBox="0 0 84 24" aria-hidden="true"><use href="#barcode"/></svg>

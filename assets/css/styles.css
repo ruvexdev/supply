@@ -1930,5 +1930,9 @@ h3 { font-size: clamp(2rem, 3vw, 2.7rem); }
   .tool.is-selected .tool-badges { transform: translateX(-50%); }
 }
 
-/* Single-tool demo shelf */
-.hero-icon-grid.hero-icon-single { grid-template-columns: 1fr; width: 50%; margin-left: auto; margin-right: auto; }
+/* Locked shelf boxes: logo only */
+.tool.is-locked { pointer-events: none; }
+.tool.is-locked .tool-btn { cursor: default; }
+a.btn-download { display: flex; align-items: center; justify-content: space-between; gap: 8px; text-decoration: none; background: var(--orange); border: 1px solid var(--ink); color: var(--ink); }
+a.btn-download:hover { background: var(--ink); color: var(--cream); }
+a.btn-download.is-off { background: transparent; border: 1px dashed rgba(13, 17, 23, 0.38); color: rgba(13, 17, 23, 0.65); cursor: default; pointer-events: none; }
