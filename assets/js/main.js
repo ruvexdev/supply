@@ -31,20 +31,6 @@
         'One zip, normal folders inside, easy to open by hand',
         'Restore to the original locations, or anywhere else'
       ]
-    },
-    suite: {
-      plate: '003',
-      name: 'Suite',
-      job: 'all tools, one place',
-      category: 'tools',
-      categoryLabel: 'Tools',
-      icon: 'suite',
-      file: 'downloads/Suite.exe',
-      readme: 'One window for every Ruvex tool. Suite reads the shelf, shows what you have and what is out of date, and downloads the tools you pick into a folder of your choice.',
-      bullets: [
-        'Get everything at once, or only what you want',
-        'Spots updates by checking each file against its checksum'
-      ]
     }
   };
 
@@ -74,6 +60,11 @@
   var specDownload = document.getElementById('spec-download');
   var counterNote = document.getElementById('counter-note');
   var fileInfo = {};
+  var SUITE_FILE = 'downloads/Suite.exe';
+  var suiteDownload = document.getElementById('suite-download');
+  var suiteNote = document.getElementById('suite-note');
+  var suiteStatus = document.getElementById('suite-status');
+  var suiteSize = document.getElementById('suite-size');
   var saveBtn = document.getElementById('save-btn');
   var saveLabel = document.getElementById('save-label');
   var receiptSaved = document.getElementById('receipt-saved');
@@ -229,12 +220,40 @@
     }
   }
 
+  function renderSuite(info) {
+    if (!suiteDownload) {
+      return;
+    }
+    if (info && info.ok) {
+      suiteDownload.classList.remove('is-off');
+      suiteDownload.setAttribute('href', SUITE_FILE);
+      suiteDownload.setAttribute('download', 'Suite.exe');
+      suiteDownload.removeAttribute('aria-disabled');
+      suiteDownload.removeAttribute('tabindex');
+      suiteNote.textContent = 'READY';
+      suiteStatus.textContent = 'AVAILABLE';
+      suiteSize.textContent = info.size ? '.EXE \u00b7 ' + Math.max(1, Math.round(info.size / 1048576)) + ' MB' : '.EXE';
+    } else {
+      suiteDownload.classList.add('is-off');
+      suiteDownload.removeAttribute('href');
+      suiteDownload.removeAttribute('download');
+      suiteDownload.setAttribute('aria-disabled', 'true');
+      suiteDownload.setAttribute('tabindex', '-1');
+      suiteNote.textContent = 'NOT YET';
+      suiteStatus.textContent = 'COMING SOON';
+      suiteSize.textContent = 'NOT YET AVAILABLE';
+    }
+  }
+
   function updateCounts() {
-    var ids = Object.keys(TOOLS);
+    var files = Object.keys(TOOLS).map(function (id) { return TOOLS[id].file; }).concat([SUITE_FILE]);
     var found = 0;
-    var pending = ids.length;
-    ids.forEach(function (id) {
-      probeFile(TOOLS[id].file, function (info) {
+    var pending = files.length;
+    files.forEach(function (file) {
+      probeFile(file, function (info) {
+        if (file === SUITE_FILE) {
+          renderSuite(info);
+        }
         if (info.ok) {
           found += 1;
         }
