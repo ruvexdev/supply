@@ -31,6 +31,20 @@
         'One zip, normal folders inside, easy to open by hand',
         'Restore to the original locations, or anywhere else'
       ]
+    },
+    suite: {
+      plate: '003',
+      name: 'Suite',
+      job: 'all tools, one place',
+      category: 'tools',
+      categoryLabel: 'Tools',
+      icon: 'suite',
+      file: 'downloads/Suite.exe',
+      readme: 'One window for every Ruvex tool. Suite reads the shelf, shows what you have and what is out of date, and downloads the tools you pick into a folder of your choice.',
+      bullets: [
+        'Get everything at once, or only what you want',
+        'Spots updates by checking each file against its checksum'
+      ]
     }
   };
 

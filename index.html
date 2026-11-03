@@ -127,7 +127,13 @@
         <rect x="77" y="0" width="4" height="24" fill="currentColor"/>
         <rect x="82" y="0" width="2" height="24" fill="currentColor"/>
       </symbol>
-          <symbol id="icon-stash" viewBox="0 0 16 16">
+          <symbol id="icon-suite" viewBox="0 0 16 16">
+        <rect x="2" y="2" width="5" height="5" fill="currentColor"/>
+        <rect x="9" y="2" width="5" height="5" fill="currentColor"/>
+        <rect x="2" y="9" width="5" height="5" fill="currentColor"/>
+        <rect x="9" y="9" width="5" height="5" fill="var(--icon-accent, #F16D0B)"/>
+      </symbol>
+      <symbol id="icon-stash" viewBox="0 0 16 16">
         <rect x="2" y="3" width="5" height="2" fill="currentColor"/>
         <rect x="2" y="5" width="12" height="9" fill="currentColor"/>
         <rect x="7" y="6" width="2" height="3" fill="#0D1117"/>
@@ -195,12 +201,12 @@
                   <div class="hero-icon-grid">
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-pull"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-stash"/></svg></span>
+                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-suite"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-shred"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-clipstack"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-swatch"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-shrink"/></svg></span>
                     <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-hash"/></svg></span>
-                    <span><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-boot"/></svg></span>
                   </div>
                   <span class="hero-copy">SMALL TOOLS.<br>ONE JOB EACH.</span>
                 </div>
@@ -218,15 +224,15 @@
         <div class="shelf-talker">
           <span class="talker-clip" aria-hidden="true"></span>
           <h1 id="hero-title">Small tools.<br>One job each.</h1>
-          <p class="hero-lede">A shelf of focused Windows utilities from ruvexdev. Pull and Stash are on the shelf now; the rest are on their way.</p>
+          <p class="hero-lede">A shelf of focused Windows utilities from ruvexdev. Pull, Stash and Suite are on the shelf now; the rest are on their way.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#shelf">Browse the shelf <svg class="btn-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-arrow-down"/></svg></a>
             <a class="text-link" href="#about">About Ruvex <span aria-hidden="true">→</span></a>
           </div>
           <div class="talker-meta" aria-label="Catalog summary">
-            <span><strong>8</strong> TOOLS</span>
-            <span><strong data-count="available">2</strong> AVAILABLE</span>
-            <span><strong data-count="exe">2</strong> .EXE FILES</span>
+            <span><strong>9</strong> TOOLS</span>
+            <span><strong data-count="available">3</strong> AVAILABLE</span>
+            <span><strong data-count="exe">3</strong> .EXE FILES</span>
           </div>
           <div class="talker-foot">
             <span class="talker-label">SHELF TALKER / VOL. 01</span>
@@ -243,7 +249,7 @@
       <div class="catalog-head">
         <div>
           <h2 id="shelf-title">The shelf</h2>
-          <p class="section-lede">Pull and Stash are on the shelf. The rest are on their way.</p>
+          <p class="section-lede">Pull, Stash and Suite are on the shelf. The rest are on their way.</p>
         </div>
         <div class="view-toggle" hidden role="group" aria-label="Catalog view">
           <button class="view-btn is-active" type="button" data-view="shelf" aria-pressed="true">
@@ -265,7 +271,7 @@
           <button class="filter" type="button" data-filter="media" aria-pressed="false">Media <span>2</span></button>
           <button class="filter" type="button" data-filter="network" aria-pressed="false">Network <span>1</span></button>
         </div>
-        <p class="filter-count" id="filter-count" aria-live="polite">Showing 8 of 8</p>
+        <p class="filter-count" id="filter-count" aria-live="polite">Showing 9 of 9</p>
       </div>
 
       <div class="catalog-layout">
@@ -317,13 +323,36 @@
               </button>
               <span class="tool-shelf" aria-hidden="true"></span>
             </article>
-            <article class="tool cover-cream is-locked" data-tool="locked-shred" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 003: not available yet" aria-disabled="true">
+            <article class="tool cover-cream" data-tool="suite" data-category="tools">
+              <span class="tool-badges" aria-hidden="true">
+                <span class="badge badge-counter">ON COUNTER</span>
+                <span class="badge badge-saved"><svg class="pixel-icon" viewBox="0 0 16 16"><use href="#icon-bookmark"/></svg> SAVED</span>
+              </span>
+              <button class="tool-btn" type="button" data-tool="suite" aria-label="Open box 003: Suite, all tools, one place, available" aria-pressed="false" aria-controls="counter">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
                     <span class="tool-band"><span>RUVEX</span><span>NO. 003</span></span>
+                    <span class="tool-art">
+                      <span class="tool-cat">TOOLS</span>
+                      <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-suite"/></svg></span>
+                      <span class="tool-name">Suite</span>
+                      <span class="tool-job">all tools, one place</span>
+                    </span>
+                    <span class="tool-foot"><span>AVAILABLE</span><span>OPEN BOX →</span></span>
+                  </span>
+                </span>
+              </button>
+              <span class="tool-shelf" aria-hidden="true"></span>
+            </article>
+            <article class="tool cover-ink is-locked" data-tool="locked-shred" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 004: not available yet" aria-disabled="true">
+                <span class="tool-box">
+                  <span class="tool-box-side" aria-hidden="true"></span>
+                  <span class="tool-box-top" aria-hidden="true"></span>
+                  <span class="tool-front">
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 004</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-shred"/></svg></span>
@@ -334,15 +363,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="003 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="004 · ***"></span>
             </article>
-            <article class="tool cover-ink is-locked" data-tool="locked-clipstack" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 004: not available yet" aria-disabled="true">
+            <article class="tool cover-cream is-locked" data-tool="locked-clipstack" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 005: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 004</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 005</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-clipstack"/></svg></span>
@@ -353,15 +382,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="004 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="005 · ***"></span>
             </article>
-            <article class="tool cover-cream is-locked" data-tool="locked-swatch" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 005: not available yet" aria-disabled="true">
+            <article class="tool cover-ink is-locked" data-tool="locked-swatch" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 006: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 005</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 006</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-swatch"/></svg></span>
@@ -372,15 +401,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="005 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="006 · ***"></span>
             </article>
             <article class="tool cover-cream is-locked" data-tool="locked-shrink" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 006: not available yet" aria-disabled="true">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 007: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 006</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 007</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-shrink"/></svg></span>
@@ -391,15 +420,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="006 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="007 · ***"></span>
             </article>
-            <article class="tool cover-ink is-locked" data-tool="locked-hash" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 007: not available yet" aria-disabled="true">
+            <article class="tool cover-cream is-locked" data-tool="locked-hash" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 008: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 007</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 008</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-hash"/></svg></span>
@@ -410,15 +439,15 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="007 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="008 · ***"></span>
             </article>
-            <article class="tool cover-cream is-locked" data-tool="locked-boot" data-category="locked">
-              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 008: not available yet" aria-disabled="true">
+            <article class="tool cover-orange is-locked" data-tool="locked-boot" data-category="locked">
+              <button class="tool-btn" type="button" tabindex="-1" aria-label="Box 009: not available yet" aria-disabled="true">
                 <span class="tool-box">
                   <span class="tool-box-side" aria-hidden="true"></span>
                   <span class="tool-box-top" aria-hidden="true"></span>
                   <span class="tool-front">
-                    <span class="tool-band"><span>RUVEX</span><span>NO. 008</span></span>
+                    <span class="tool-band"><span>RUVEX</span><span>NO. 009</span></span>
                     <span class="tool-art">
                       <span class="tool-cat">***</span>
                       <span class="tool-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-boot"/></svg></span>
@@ -429,7 +458,7 @@
                   </span>
                 </span>
               </button>
-              <span class="tool-shelf" aria-hidden="true" data-label="008 · ***"></span>
+              <span class="tool-shelf" aria-hidden="true" data-label="009 · ***"></span>
             </article>
           </div>
 
@@ -453,6 +482,16 @@
                 <span class="list-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-stash"/></svg></span>
                 <span class="list-main"><span class="list-name">Stash</span><span class="list-job">folder backups</span></span>
                 <span class="list-cat">Files</span>
+                <span class="list-status">AVAILABLE</span>
+                <span class="list-open">Open <svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-arrow-right"/></svg></span>
+              </button>
+            </li>
+            <li class="list-item" data-tool="suite" data-category="tools">
+              <button class="list-btn" type="button" data-tool="suite" aria-label="Open Suite: all tools, one place, Tools, available" aria-pressed="false" aria-controls="counter">
+                <span class="list-plate">003</span>
+                <span class="list-icon"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-suite"/></svg></span>
+                <span class="list-main"><span class="list-name">Suite</span><span class="list-job">all tools, one place</span></span>
+                <span class="list-cat">Tools</span>
                 <span class="list-status">AVAILABLE</span>
                 <span class="list-open">Open <svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-arrow-right"/></svg></span>
               </button>
@@ -510,7 +549,7 @@
           <h2 id="about-title">Ruvex</h2>
           <p class="about-lede">Ruvex is a shelf of small Windows tools by ruvexdev.</p>
           <p>Why a shelf? Because a utility should feel like an object you can pick up, read the back of, and decide to keep — not another row in a software directory.</p>
-          <p>Tools are tested, listed with a direct download, and added to the shelf one at a time. Pull and Stash are the first.</p>
+          <p>Tools are tested, listed with a direct download, and added to the shelf one at a time. Pull, Stash and Suite are the first.</p>
           <div class="about-signature">
             <span class="sig-mark"><svg class="pixel-icon" viewBox="0 0 16 16" aria-hidden="true"><use href="#icon-r"/></svg></span>
             <span class="sig-copy"><span class="sig-name">RUVEXDEV</span><span class="sig-note">independent developer</span></span>
@@ -523,13 +562,13 @@
             <p class="receipt-sub">VOL. 01 / SOFTWARE SUPPLY</p>
             <div class="receipt-rule" aria-hidden="true"></div>
             <dl class="receipt-lines">
-              <div><dt>Tools on the shelf</dt><dd>8</dd></div>
-              <div><dt>Available now</dt><dd data-count="available">2</dd></div>
-              <div><dt>.exe files</dt><dd data-count="exe">2</dd></div>
+              <div><dt>Tools on the shelf</dt><dd>9</dd></div>
+              <div><dt>Available now</dt><dd data-count="available">3</dd></div>
+              <div><dt>.exe files</dt><dd data-count="exe">3</dd></div>
               <div><dt>Saved in this browser</dt><dd><span id="receipt-saved">0</span></dd></div>
             </dl>
             <div class="receipt-rule" aria-hidden="true"></div>
-            <div class="receipt-total"><span>TOTAL</span><span><span data-count="available">2</span> READY</span></div>
+            <div class="receipt-total"><span>TOTAL</span><span><span data-count="available">3</span> READY</span></div>
             <p class="receipt-thanks">THANK YOU FOR LOOKING.</p>
             <div class="receipt-bottom">
               <svg class="barcode" viewBox="0 0 84 24" aria-hidden="true"><use href="#barcode"/></svg>

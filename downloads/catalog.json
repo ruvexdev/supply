@@ -1,0 +1,26 @@
+{
+  "updated": "2026-11-03",
+  "suite": {
+    "version": "1.0"
+  },
+  "tools": [
+    {
+      "id": "pull",
+      "name": "Pull",
+      "job": "yt-dlp downloader",
+      "file": "Pull.exe",
+      "version": "1.0",
+      "size": 32906716,
+      "sha256": "efc591bd6f546eeb9ff84d70708044fc29094ca909ca096a703bfdb7420bbb47"
+    },
+    {
+      "id": "stash",
+      "name": "Stash",
+      "job": "folder backups",
+      "file": "Stash.exe",
+      "version": "1.0",
+      "size": 12233543,
+      "sha256": "846ee68534c389139064bf9e95b2397d0fab2c903d73c6fbc62fd39e21107a40"
+    }
+  ]
+}
