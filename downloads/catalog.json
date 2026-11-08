@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-08",
   "suite": {
     "version": "1.0"
   },
@@ -21,6 +21,24 @@
       "version": "1.0",
       "size": 12233543,
       "sha256": "846ee68534c389139064bf9e95b2397d0fab2c903d73c6fbc62fd39e21107a40"
+    },
+    {
+      "id": "shrink",
+      "name": "Shrink",
+      "job": "image shrinker",
+      "file": "Shrink.exe",
+      "version": "1.0",
+      "size": 30809686,
+      "sha256": "105709efbc082d6d7cce43d42f77148d484bd16c028f9dcd310497c5f58279fd"
+    },
+    {
+      "id": "hashcheck",
+      "name": "Hashcheck",
+      "job": "checksum checker",
+      "file": "Hashcheck.exe",
+      "version": "1.0",
+      "size": 12213154,
+      "sha256": "b3bcd808d5ad68686db057bc18b147734f66f5cfa693af01de65b2e9887f8268"
     }
   ]
 }

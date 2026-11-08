@@ -31,6 +31,34 @@
         'One zip, normal folders inside, easy to open by hand',
         'Restore to the original locations, or anywhere else'
       ]
+    },
+    shrink: {
+      plate: '003',
+      name: 'Shrink',
+      job: 'image shrinker',
+      category: 'images',
+      categoryLabel: 'Images',
+      icon: 'shrink',
+      file: 'downloads/Shrink.exe',
+      readme: 'Drop in a pile of photos and get lighter copies back. Pick a quality and a maximum size, preview the savings, and Shrink saves the results in a separate folder. Your originals are never touched.',
+      bullets: [
+        'JPG, PNG and WebP, in batches, with a savings estimate',
+        'Keeps the rotation, drops the hidden camera and GPS data'
+      ]
+    },
+    hashcheck: {
+      plate: '004',
+      name: 'Hashcheck',
+      job: 'checksum checker',
+      category: 'security',
+      categoryLabel: 'Security',
+      icon: 'hash',
+      file: 'downloads/Hashcheck.exe',
+      readme: 'Is this download really the file it claims to be? Pick it, paste the checksum from the download page, and Hashcheck says whether they match. MD5, SHA-1, SHA-256 and SHA-512 in a single pass.',
+      bullets: [
+        'Detects the checksum type from its length',
+        'Reads SHA256SUMS lists, and the file is never changed or uploaded'
+      ]
     }
   };
 
